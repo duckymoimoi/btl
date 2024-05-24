@@ -162,6 +162,8 @@ public void run() {
                     boss.speed=(score/72+1)*2;
                     boss.x=screenWidth/2-boss.width/2;
                     boss.y=100;
+                    set.setBullet_lv3();
+
                     lv3=true;}
             }
         }
@@ -198,6 +200,7 @@ public void run() {
                         lv1=true;
                         lv3=false;
                         set.setAlien();
+                        set.setBullet();
                     }
                 }
 
