@@ -64,11 +64,11 @@ public class Sound implements Runnable{
               play();
               p.player.alive=true;
             }
-            // else if(KIP.spacePressed==true){
-            //   setFile(2);
-            //   play();
-            //   KIP.spacePressed=false;
-            // }
+            else if(KIP.spacePressed==true){
+              setFile(2);
+              play();
+               KIP.spacePressed=false;
+             }
             --delta;
             ++drawCount;
          }
