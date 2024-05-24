@@ -3,10 +3,12 @@ package entity;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 import main.Panel;
 
 public class Boss extends Sprite {
+    private ImageIcon bossImage;
     Panel p;
     public int sangphai=1;
     public double countDown1=0;
@@ -22,6 +24,7 @@ public class Boss extends Sprite {
         x=1000;
         y=1000;
         alive=false;
+        bossImage = new ImageIcon(getClass().getResource("/Image/Boss.gif"));
     }
     
     public void update(){
@@ -45,8 +48,8 @@ public class Boss extends Sprite {
     }
     public void draw(Graphics2D g2){
         if(alive==true){
-        g2.setColor(Color.white);
-        g2.fillRect(x,y,width,height);
+            g2.drawImage(bossImage.getImage(),x,y,null);
         }
+
     }
 }

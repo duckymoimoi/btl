@@ -4,17 +4,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Random;
+import javax.swing.ImageIcon;
 
 import javax.swing.*;
 
 import Background.BackgroundManager;
-import entity.Alien;
-import entity.Bomb;
-import entity.Boss;
-import entity.BossHP;
-import entity.Bullet;
-import entity.Player;
+import entity.*;
 
 
 public class Panel extends JPanel implements Runnable {
@@ -50,6 +48,7 @@ public class Panel extends JPanel implements Runnable {
     public Boolean lv1=true;
     public Boolean lv2=false;
     public Boolean lv3=false;
+    private ImageIcon livesImage;
     
     Setter set=new Setter(this);
     Thread gameThread;
@@ -62,6 +61,10 @@ public class Panel extends JPanel implements Runnable {
     Bullet[] bullet=new Bullet[5];
     public Boss boss;
     BossHP bosshp=new BossHP(this);
+    private Random r = new Random();
+    private BonusEnemy bonusEnemy;
+    private boolean newBonusEnemy = true;
+    private ArrayList<BonusEnemy> bonusEnemyList= new ArrayList<>();
    // Trang thai game
     public int gameState =0;
     public final int playState = 1;
@@ -125,18 +128,17 @@ public void run() {
     }
 }
     //Bộ đếm mạng
+    private ImageIcon lifeIcon;
     public void drawLives(Graphics2D g2) {
-        // int livesX = 300;
-        // int livesY = 25;
-        // int livesWidth = 32;
-        // int livesHeight = 32;
+      
+         int livesX = 20;
+         int livesY = 60;
+         int livesWidth = 40;
     
-        // for (int i = 0; i < player.getLife(); i++) {
-        //     g2.setColor(Color.RED);
-        //     g2.fillRect(livesX + i * livesWidth, livesY, livesWidth, livesHeight);
-        //     g2.setColor(Color.WHITE);
-        //     g2.drawRect(livesX + i * livesWidth, livesY, livesWidth, livesHeight);
-        // }
+        for (int i = 0; i < player.getLife(); i++) {
+            lifeIcon = new ImageIcon(getClass().getResource("/Image/shipLife.png"));
+            g2.drawImage(lifeIcon.getImage(),livesX + i * livesWidth, livesY, null);
+         }
     }
     //kiểm tra đạn có trúng không
     public void checkDestroyed(){
@@ -239,7 +241,29 @@ public void run() {
         else if(lv3==true){
         for(int i=0;i<5;i++){
             bullet[i].update_lv3();}
-    }
+        }
+        long currentTime = System.currentTimeMillis();
+        //triệu hồi bonusEnemy, bắn hạ thì được buff invincible tầm 4s,
+        if (!this.bonusEnemyList.isEmpty()) {
+            for(int answer = 0; answer < this.bonusEnemyList.size(); ++answer) {
+                ((BonusEnemy)this.bonusEnemyList.get(answer)).setXPosition(((BonusEnemy)this.bonusEnemyList.get(answer)).getXPosition() + 2);
+                if (((BonusEnemy)this.bonusEnemyList.get(answer)).getXPosition() > 700) {
+                    this.bonusEnemyList.remove(answer);
+                    this.newBonusEnemy = true;
+                }
+            }
+
+            for(int answer = 0; answer < this.bonusEnemyList.size(); ++answer) {
+                if(bom.x+bom.width>=((BonusEnemy)this.bonusEnemyList.get(answer)).getXPosition() && bom.x<=((BonusEnemy)this.bonusEnemyList.get(answer)).getXPosition()+((BonusEnemy)this.bonusEnemyList.get(answer)).width && bom.y<=((BonusEnemy)this.bonusEnemyList.get(answer)).getYPosition()+((BonusEnemy)this.bonusEnemyList.get(answer)).height && bom.y+bom.height>=((BonusEnemy)this.bonusEnemyList.get(answer)).getYPosition()) {
+                    this.bonusEnemyList.remove(answer);
+                    player.makeInvincible();
+                    this.newBonusEnemy = true;
+                    if (player.isInvincible() && currentTime - player.lastHitTime > 4000) {
+                        player.isInvincible = false; // Kết thúc trạng thái bất tử tạm thời
+                    }
+                }
+            }
+        }
     }
     }
     //vẽ nhân vật và quái,bom lên màn hình
@@ -287,10 +311,20 @@ public void run() {
         bosshp.draw(g2);
         //in điểm số
         ui.draw(g2);
-        
+
         //in bộ đếm mạng
         drawLives(g2);
-        
+        //Draw bonusEnemy
+        if (this.newBonusEnemy && this.r.nextInt(2000) == 250 ) {
+            this.bonusEnemy = new BonusEnemy(-50, 30, this);
+            this.bonusEnemyList.add(this.bonusEnemy);
+            this.newBonusEnemy = false;
+        }
+
+        for(int index = 0; index < this.bonusEnemyList.size(); ++index) {
+            ((BonusEnemy)this.bonusEnemyList.get(index)).draw(g2);
+        }
+
         g2.dispose();}
     }
 }

@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 public class Player extends Sprite {
     private ImageIcon playerImage;
     private ImageIcon playerImageGETHIT;
+
     Panel p;
     KeyInput kIP;
     //phương thức khởi tạo
