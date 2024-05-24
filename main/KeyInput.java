@@ -99,7 +99,7 @@ public class KeyInput implements KeyListener  {
             else if(code == KeyEvent.VK_B){
                 if (p.gameState == p.pauseState) {
                     p.gameState = p.menuState;
-                  p.resetGame();
+                    p.ResetGame();
                 }
                 
             }

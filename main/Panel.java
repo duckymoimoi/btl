@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.Random;
 import javax.swing.ImageIcon;
 
 import javax.swing.*;
@@ -48,7 +47,6 @@ public class Panel extends JPanel implements Runnable {
     public Boolean lv1=true;
     public Boolean lv2=false;
     public Boolean lv3=false;
-    private ImageIcon livesImage;
     
     Setter set=new Setter(this);
     Thread gameThread;
@@ -256,9 +254,9 @@ public void run() {
             for(int answer = 0; answer < this.bonusEnemyList.size(); ++answer) {
                 if(bom.x+bom.width>=((BonusEnemy)this.bonusEnemyList.get(answer)).getXPosition() && bom.x<=((BonusEnemy)this.bonusEnemyList.get(answer)).getXPosition()+((BonusEnemy)this.bonusEnemyList.get(answer)).width && bom.y<=((BonusEnemy)this.bonusEnemyList.get(answer)).getYPosition()+((BonusEnemy)this.bonusEnemyList.get(answer)).height && bom.y+bom.height>=((BonusEnemy)this.bonusEnemyList.get(answer)).getYPosition()) {
                     this.bonusEnemyList.remove(answer);
-                    player.makeInvincible();
+                    player.buffInvincible();
                     this.newBonusEnemy = true;
-                    if (player.isInvincible() && currentTime - player.lastHitTime > 4000) {
+                    if (player.isInvincible() && currentTime - player.lastHitTime > 10000) {
                         player.isInvincible = false; // Kết thúc trạng thái bất tử tạm thời
                     }
                 }

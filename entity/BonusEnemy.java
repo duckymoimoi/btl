@@ -1,8 +1,5 @@
 package entity;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+
 import main.Panel;
 import javax.swing.ImageIcon;
 import java.awt.Graphics2D;
