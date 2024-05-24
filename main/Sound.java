@@ -10,11 +10,12 @@ public class Sound implements Runnable{
       Clip clip;
       URL soundURL[] = new URL[10];
       Panel p=new Panel();
-      
+     KeyInput KIP;
       public Sound(Panel p){
         this.p=p;
-        soundURL[0]=getClass().getResource("/sound/destruction.wav");
+        soundURL[0]=getClass().getResource("/sound/explosion.wav");
         soundURL[1]=getClass().getResource("/sound/deathSound.wav");
+        soundURL[2]=getClass().getResource("/sound/shooting.wav");
       }
 
       public void setFile(int i){
@@ -58,11 +59,16 @@ public class Sound implements Runnable{
               play();
               p.bom.destroyed=false;
             }
-            if(p.player.alive==false){
+            else if(p.player.alive==false){
               setFile(1);
               play();
               p.player.alive=true;
             }
+            // else if(KIP.spacePressed==true){
+            //   setFile(2);
+            //   play();
+            //   KIP.spacePressed=false;
+            // }
             --delta;
             ++drawCount;
          }

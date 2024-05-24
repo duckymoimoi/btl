@@ -207,15 +207,6 @@ public void run() {
     
     //Thay đổi vị trí nhân vật và quái,bom
     public void update(){
-        if (gameState == menuState) {
-
-        }
-        if (gameState==pauseState){
-
-        }
-        if (gameState==helpState){
-
-        }
 
         if (gameState == playState) {
         player.update();

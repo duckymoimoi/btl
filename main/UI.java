@@ -122,7 +122,10 @@ public class UI {
         g2.setFont(maruM);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
         String titleText = "Pause";
-        g2.drawString(titleText, 275, 350);
+        g2.drawString(titleText, 275, 250);
+        String titleText1 = "B - Back to menu";
+        g2.drawString(titleText1, 190, 320);
+
     }
     public void drawGameOverScreen(Graphics2D g2) {
         g2.setColor(Color.WHITE);

@@ -25,25 +25,12 @@ public class KeyInput implements KeyListener  {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (p.gameState == p.menuState) {
-            if (code == KeyEvent.VK_W) {
+            if (code == KeyEvent.VK_W||code == KeyEvent.VK_UP) {
                 p.ui.comN--;
                 if(p.ui.comN<0){
                     p.ui.comN=2;
-
                 }
-            } else if (code == KeyEvent.VK_DOWN) {
-                p.ui.comN++;
-                if(p.ui.comN>2){
-                    p.ui.comN=0;
-                }
-                if (code == KeyEvent.VK_UP) {
-                p.ui.comN--;
-                if(p.ui.comN<0){
-                    p.ui.comN=2;
-
-                }
-            }
-            } else if (code == KeyEvent.VK_S) {
+            } else if (code == KeyEvent.VK_S ||code == KeyEvent.VK_DOWN) {
                 p.ui.comN++;
                 if(p.ui.comN>2){
                     p.ui.comN=0;
@@ -59,9 +46,7 @@ public class KeyInput implements KeyListener  {
                 if (p.ui.comN==2){
                     System.exit(0);
                 }
-
             }
-
         } else if (p.gameState==p.helpState) {
             if(code ==KeyEvent.VK_ESCAPE){
                 p.gameState=p.menuState;
@@ -99,6 +84,13 @@ public class KeyInput implements KeyListener  {
                  if (p.gameState == p.pauseState) {
                     p.gameState = p.playState;
                 }
+            }
+            else if(code == KeyEvent.VK_B){
+                if (p.gameState == p.pauseState) {
+                    p.gameState = p.menuState;
+                    p.ResetGame();
+                }
+                
             }
         }
         else if (p.gameState == p.gameOverState) {
