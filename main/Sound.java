@@ -5,6 +5,7 @@ import java.net.URL;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 
 public class Sound implements Runnable{
       Clip clip;
@@ -15,6 +16,9 @@ public class Sound implements Runnable{
         this.p=p;
         soundURL[0]=getClass().getResource("/sound/destruction.wav");
         soundURL[1]=getClass().getResource("/sound/deathSound.wav");
+        soundURL[2]=getClass().getResource("/sound/switchButton.wav");
+        soundURL[3]=getClass().getResource("/sound/interface.wav");
+        soundURL[4]=getClass().getResource("/sound/shot.wav");
       }
 
       public void setFile(int i){
@@ -62,6 +66,24 @@ public class Sound implements Runnable{
               setFile(1);
               play();
               p.player.alive=true;
+            }
+            if(p.KIP.change==true){
+              setFile(2);
+              play();
+              p.KIP.change=false;
+            }
+            if(p.KIP.select==true){
+              setFile(3);
+              play();
+              p.KIP.select=false;
+            }
+            if(p.bom.shot==true){
+              setFile(4);
+            FloatControl volumeControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            float volume = -10.0f;
+            volumeControl.setValue(volume);
+              play();
+              p.bom.shot=false;
             }
             --delta;
             ++drawCount;

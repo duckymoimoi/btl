@@ -31,10 +31,10 @@ public class Alien extends Sprite {
                 p.alien[i][j].sangphai = !p.alien[i][j].sangphai;
                 if(p.alien[i][j].sangphai){
                     p.alien[i][j].x -= speed; // đi sang phải
+                    p.alien[i][j].y += 15;
                 } else {
                     p.alien[i][j].x += speed; // di sang trái
                 }
-                p.alien[i][j].y += 15;
                 if(p.alien[i][j].y >= 525) {
                     p.setGameOver(true); // Đặt trạng thái trò chơi thành kết thúc
                 }
