@@ -22,7 +22,7 @@ public class Setter {
           for(int i=0;i<4;i++){
              for(int j=0;j<6;j++){
               p.alien[i][j]=new Alien((j+1)*100,(i+2)*50,(j+1)*100,p);
-              p.alien[i][j].speed=p.score/72+2;
+              p.alien[i][j].speed=p.score/72+1;
       }}
  }
      

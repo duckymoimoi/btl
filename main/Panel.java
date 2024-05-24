@@ -126,17 +126,17 @@ public void run() {
 }
     //Bộ đếm mạng
     public void drawLives(Graphics2D g2) {
-        int livesX = 300;
-        int livesY = 25;
-        int livesWidth = 32;
-        int livesHeight = 32;
+        // int livesX = 300;
+        // int livesY = 25;
+        // int livesWidth = 32;
+        // int livesHeight = 32;
     
-        for (int i = 0; i < player.getLife(); i++) {
-            g2.setColor(Color.RED);
-            g2.fillRect(livesX + i * livesWidth, livesY, livesWidth, livesHeight);
-            g2.setColor(Color.WHITE);
-            g2.drawRect(livesX + i * livesWidth, livesY, livesWidth, livesHeight);
-        }
+        // for (int i = 0; i < player.getLife(); i++) {
+        //     g2.setColor(Color.RED);
+        //     g2.fillRect(livesX + i * livesWidth, livesY, livesWidth, livesHeight);
+        //     g2.setColor(Color.WHITE);
+        //     g2.drawRect(livesX + i * livesWidth, livesY, livesWidth, livesHeight);
+        // }
     }
     //kiểm tra đạn có trúng không
     public void checkDestroyed(){

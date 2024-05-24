@@ -35,8 +35,8 @@ public class Alien extends Sprite {
                 } else {
                     p.alien[i][j].x += speed; // di sang trái
                 }
-                if(p.alien[i][j].y >= p.player.y-p.player.height) {
-                    p.gameState = p.gameOverState; // Đặt trạng thái trò chơi thành kết thúc
+                if(p.alien[i][j].y >= 525) {
+                    p.setGameOver(true); // Đặt trạng thái trò chơi thành kết thúc
                 }
             }
         }

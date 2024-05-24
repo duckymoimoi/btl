@@ -15,7 +15,7 @@ public class UI {
     public int comN=0;
     Graphics2D g2;
     private ImageIcon backgroundMenuS;
-
+    private ImageIcon menuPointer;
     public UI(Panel p) {
         this.p = p;
         try {
@@ -53,6 +53,7 @@ public class UI {
 
     // ve menu
     public void drawMenuS(Graphics2D g2) {
+        menuPointer = new ImageIcon(getClass().getResource("/Image/menuPointer.png"));
         backgroundMenuS = new ImageIcon(getClass().getResource("/Image/backgroundMenuS.jpg"));
         g2.setFont(PublicP);
         g2.setColor(Color.white);
@@ -70,7 +71,7 @@ public class UI {
         String playText = "New Game";
         g2.drawString(playText, titleX+120,350 );
         if(comN == 0){
-            g2.drawString(">", titleX +100,350);
+            g2.drawImage(menuPointer.getImage(), titleX +80,325, null);
 
         }
 
@@ -79,7 +80,7 @@ public class UI {
         String helpText = "How to play";
         g2.drawString(helpText, titleX+120,420 );
         if(comN == 1){
-            g2.drawString(">", titleX +100,420);
+            g2.drawImage(menuPointer.getImage(), titleX +80,395, null);
 
         }
         // Vẽ nút Quit
@@ -87,7 +88,7 @@ public class UI {
         String quitText = "Quit";
         g2.drawString(quitText, titleX+120,490 );
         if(comN == 2){
-            g2.drawString(">", titleX +100,490);
+            g2.drawImage(menuPointer.getImage(), titleX +80,465, null);
 
         }
 
