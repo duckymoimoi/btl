@@ -3,17 +3,19 @@ package entity;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
-
+import javax.swing.ImageIcon;
 import main.Panel;
 
 public class Bullet extends Sprite {
     Panel p;
+    private ImageIcon bulletImage;
     public double countDown=0;
     public int index;
     public Bullet (Panel p){
         this.p=p;
         this.speed=4;
         setDefaultValue();
+        bulletImage = new ImageIcon(getClass().getResource("/Image/bulletImage.png"));
     }
 
     public void setDefaultValue(){
@@ -73,7 +75,6 @@ public class Bullet extends Sprite {
         countDown-=1;
     }
     public void draw(Graphics2D g2){
-        g2.setColor(Color.green);
-        g2.fillRect(x,y,width,height);
+        g2.drawImage(bulletImage.getImage(), x, y, null);
     }
 }

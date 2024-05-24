@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DecimalFormat;
@@ -16,6 +17,10 @@ public class UI {
     Graphics2D g2;
     private ImageIcon backgroundMenuS;
     private ImageIcon menuPointer;
+    private ImageIcon pauseBackground;
+    private ImageIcon gameOverImage;
+    private ImageIcon helpBackground;
+
     public UI(Panel p) {
         this.p = p;
         try {
@@ -54,7 +59,7 @@ public class UI {
     // ve menu
     public void drawMenuS(Graphics2D g2) {
         menuPointer = new ImageIcon(getClass().getResource("/Image/menuPointer.png"));
-        backgroundMenuS = new ImageIcon(getClass().getResource("/Image/backgroundMenuS.jpg"));
+        backgroundMenuS = new ImageIcon(getClass().getResource("/Image/helpBackground.jpg"));
         g2.setFont(PublicP);
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,30F));
@@ -96,12 +101,14 @@ public class UI {
     }
     // ve huong dan
     public void drawHelpScreen(Graphics2D g2) {
+        this.helpBackground = new ImageIcon(this.getClass().getResource("/Image/backgroundMenuS.jpg"));
         g2.setColor(Color.WHITE);
         g2.setFont(PublicP);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
         String titleText = "How to play";
         int titleX = (p.screenWidth - g2.getFontMetrics().stringWidth(titleText)) / 2;
         g2.drawString(titleText, titleX, 100);
+        g2.drawImage(this.helpBackground.getImage(), 0, 0, (ImageObserver)null);
 
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,15F));
@@ -118,6 +125,7 @@ public class UI {
       
         }
     public void drawPauseScreen(Graphics2D g2){
+        this.pauseBackground = new ImageIcon(this.getClass().getResource("/Image/pauseBackground.jpg"));
         g2.setColor(Color.WHITE);
         g2.setFont(maruM);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
@@ -125,9 +133,12 @@ public class UI {
         g2.drawString(titleText, 275, 250);
         String titleText1 = "B - Back to menu";
         g2.drawString(titleText1, 190, 320);
+        g2.drawImage(this.pauseBackground.getImage(), 0, 0, (ImageObserver)null);
+
 
     }
     public void drawGameOverScreen(Graphics2D g2) {
+        this.gameOverImage = new ImageIcon(this.getClass().getResource("/Image/gameOverImage.jpg"));
         g2.setColor(Color.WHITE);
         g2.setFont(maruM);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
@@ -160,6 +171,7 @@ public class UI {
         if (comN == 1){
             g2.drawString(">", GameOverOption2X -20 ,400);
         }
+        g2.drawImage(this.gameOverImage.getImage(), 0, 0, (ImageObserver)null);
     }
 }
 
