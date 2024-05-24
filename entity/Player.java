@@ -58,6 +58,7 @@ public class Player extends Sprite {
 
     public boolean isInvincible = false; // Trạng thái bất tử tạm thời
     public long lastHitTime; // Thời gian lần cuối bị trúng đạn
+    public long lastBuffTime; // Thời gian lần cuối bị trúng đạn
     public long invincibilityDuration = 1000; // Thời gian bất tử tạm thời (2 giây)
 
     public boolean isInvincible() {
@@ -67,6 +68,10 @@ public class Player extends Sprite {
     public void makeInvincible() {
         isInvincible = true;
         lastHitTime = System.currentTimeMillis();
+    }
+    public void buffInvincible() {
+        isInvincible = true;
+        lastBuffTime = System.currentTimeMillis();
     }
 
     public boolean isHit(Bullet bullet) {

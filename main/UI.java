@@ -126,6 +126,8 @@ public class UI {
         }
     public void drawPauseScreen(Graphics2D g2){
         this.pauseBackground = new ImageIcon(this.getClass().getResource("/Image/pauseBackground.jpg"));
+        g2.drawImage(this.pauseBackground.getImage(), 0, 0, (ImageObserver)null);
+        g2.drawImage(this.pauseBackground.getImage(), 0, 0, (ImageObserver)null);
         g2.setColor(Color.WHITE);
         g2.setFont(maruM);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
@@ -133,12 +135,13 @@ public class UI {
         g2.drawString(titleText, 275, 250);
         String titleText1 = "B - Back to menu";
         g2.drawString(titleText1, 190, 320);
-        g2.drawImage(this.pauseBackground.getImage(), 0, 0, (ImageObserver)null);
+
 
 
     }
     public void drawGameOverScreen(Graphics2D g2) {
         this.gameOverImage = new ImageIcon(this.getClass().getResource("/Image/gameOverImage.jpg"));
+        g2.drawImage(this.gameOverImage.getImage(), 0, 0, (ImageObserver)null);
         g2.setColor(Color.WHITE);
         g2.setFont(maruM);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
@@ -171,7 +174,7 @@ public class UI {
         if (comN == 1){
             g2.drawString(">", GameOverOption2X -20 ,400);
         }
-        g2.drawImage(this.gameOverImage.getImage(), 0, 0, (ImageObserver)null);
+
     }
 }
 
