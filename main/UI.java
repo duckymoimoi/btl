@@ -46,15 +46,17 @@ public class UI {
             drawPauseScreen(g2);
 
         }else if (p.gameState == p.playState) {
-            g2.setFont(g2.getFont().deriveFont(Font.PLAIN,24F));
+            g2.setFont(g2.getFont().deriveFont(Font.PLAIN,20F));
             g2.setColor(Color.white);
             g2.drawString("Score:" + p.score, 20, 50);
             if (p.player.alive==true) {
                 playTime += (double) 1 / 60;
             }
-            g2.drawString("Time:" + dFormat.format(playTime), 450, 50);
-        }
+            g2.drawString("HighScore:" +p.highScore,200,50);
+            g2.drawString("Time:" + dFormat.format(playTime), 470, 50);}
+
     }
+    
 
     // ve menu
     public void drawMenuS(Graphics2D g2) {
@@ -131,10 +133,10 @@ public class UI {
         g2.setColor(Color.WHITE);
         g2.setFont(maruM);
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,50F));
-        String titleText = "Pause";
-        g2.drawString(titleText, 275, 250);
-        String titleText1 = "B - Back to menu";
-        g2.drawString(titleText1, 190, 320);
+       String titleText = "Pause";
+        g2.drawString(titleText, 290, 270);
+        String titleText1 = "B-Back to menu";
+        g2.drawString(titleText1, 170, 350);
 
 
 
