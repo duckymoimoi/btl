@@ -44,6 +44,9 @@ public class Panel extends JPanel implements Runnable {
     public void ResetScore(){
         score = 0;
     }
+    public int highScore;
+    File f = new File("Highscore.txt");
+    
     public Boolean lv1=true;
     public Boolean lv2=false;
     public Boolean lv3=false;
@@ -90,6 +93,13 @@ public class Panel extends JPanel implements Runnable {
         set.setBoss();
         set.setBullet_lv3();
         gameState = menuState;
+         try {
+            PrintWriter pw = new PrintWriter(new FileOutputStream(f, false));
+            pw.write("0");
+            pw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     public void ResetGame(){
         ui.playTime = 0;
@@ -262,6 +272,25 @@ public void run() {
                 }
             }
         }
+            // update highscore
+            try {
+                Scanner fileScan = new Scanner(f);
+                while (fileScan.hasNextInt()) {
+                    String nextLine = fileScan.nextLine();
+                    Scanner lineScan = new Scanner(nextLine);
+                    highScore = lineScan.nextInt();
+                }
+            } catch (FileNotFoundException e) {
+            }
+            try {
+                if (score > highScore) {
+                    String scoreString = Integer.toString(score);
+                    PrintWriter pw = new PrintWriter(new FileOutputStream(f, false));
+                    pw.write(scoreString);
+                    pw.close();
+                }
+            } catch (FileNotFoundException e) {
+            }
     }
     }
     //vẽ nhân vật và quái,bom lên màn hình
